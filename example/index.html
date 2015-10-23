@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Async Iterator</title>
+        <style>
+            table {
+                max-width:960px;
+            }
+            
+            th,
+            td {
+                padding:5px;
+                vertical-align: top;
+                text-align: left;
+            }
+            
+            th {
+                background:#4d4d4d;
+                color:#fff;
+            }
+        </style>
+    </head>
+    <body>
+        <table>
+            <tr>
+                <th>Type of operation</th>
+                <th>Iterations</th>
+                <th>Working</th>
+                <th>Time in ms (lower is better)</th>
+                <th></th>
+            </tr>
+            <tr>
+                <td>For-loop</td>
+                <td>500k Ops/Call, 500k total</td>
+                <td id="for-status">No</td>
+                <td id="for-time">N/A</td>
+                <td><button id="run-for">Run</button></td>
+            </tr>
+            <tr>
+                <td>AsyncIterator</td>
+                <td>1 Ops/Call, 500k total</td>
+                <td id="async-lift-status">No</td>
+                <td id="async-lift-time">N/A</td>
+                <td><button id="run-lift">Run</button></td>
+            </tr>
+            <tr>
+                <td>AsyncIterator</td>
+                <td>1k Ops/Call, 500k total</td>
+                <td id="async-batched-lift-status">No</td>
+                <td id="async-batched-lift-time">N/A</td>
+                <td><button id="run-batched">Run</button></td>
+            </tr>
+        </table>
+
+        <script src="//code.jquery.com/jquery-1.11.3.min.js"></script>
+        <script src="../AsyncIterator.js"></script>
+        <script src="App.js"></script>
+    </body>
+</html>
