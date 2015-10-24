@@ -1,8 +1,8 @@
 /**
- * Batch processes large datasets with the help of requestAnimationFrame in order
+ * Batch processes large datasets with the help of setInterval in order
  * to not lock up the single thread.
  */
-var asyncIterator = (function($) {
+var asyncIteratorInterval = (function($) {
 	/**
 	 * Runs a callback on a large dataset without holding up the main thread.
 	 *
@@ -17,6 +17,8 @@ var asyncIterator = (function($) {
 		this.position = 0;
 		this.results = [];
 
+		this.timer = null;
+
 		this._deferred;
 	}
 
@@ -28,7 +30,7 @@ var asyncIterator = (function($) {
 	AsyncIterator.prototype.process = function() {
 		this._deferred = new $.Deferred();
 
-		this._iterate();
+		this.timer = setInterval(this._iterate.bind(this), 10);
 
 		return this._deferred;
 	}
@@ -48,9 +50,8 @@ var asyncIterator = (function($) {
 			this.position++;
 		}
 
-		if(this.position < this.arr.length) {
-			window.requestAnimationFrame(this._iterate.bind(this));
-		} else {
+		if(this.position >= this.arr.length) {
+            clearInterval(this.timer)
 			this._deferred.resolve(this.results);
 		}
 	}

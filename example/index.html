@@ -37,23 +37,24 @@
                 <td><button id="run-for">Run</button></td>
             </tr>
             <tr>
-                <td>AsyncIterator</td>
-                <td>1 Ops/Call, 500k total</td>
-                <td id="async-lift-status">No</td>
-                <td id="async-lift-time">N/A</td>
-                <td><button id="run-lift">Run</button></td>
-            </tr>
-            <tr>
-                <td>AsyncIterator</td>
+                <td>AsyncIterator (requestAnimationFrame)</td>
                 <td>1k Ops/Call, 500k total</td>
                 <td id="async-batched-lift-status">No</td>
                 <td id="async-batched-lift-time">N/A</td>
                 <td><button id="run-batched">Run</button></td>
             </tr>
+            <tr>
+                <td>AsyncIterator (setInterval)</td>
+                <td>1k Ops/Call, 500k total</td>
+                <td id="async-batched-int-status">No</td>
+                <td id="async-batched-int-time">N/A</td>
+                <td><button id="run-int-batched">Run</button></td>
+            </tr>
         </table>
 
         <script src="//code.jquery.com/jquery-1.11.3.min.js"></script>
         <script src="../AsyncIterator.js"></script>
+        <script src="../AsyncIteratorInterval.js"></script>
         <script src="App.js"></script>
     </body>
 </html>

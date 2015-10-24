@@ -66,4 +66,53 @@
             );
         }
     );
+    
+    $('#run-int').on(
+        'click',
+        function() {
+            var startTime = new Date();
+            
+            // Initiate the iterator
+            var promise = asyncIteratorInterval(
+                myArr,
+                function(num, index){
+                    $('#async-int-status').html(Math.round((index/myArr.length)*100) + '%');
+                    return num * Math.PI;
+                }, 
+                1
+            );
+            
+            // Console log the results when it's done
+            promise.done(
+                function(results){
+                    var endTime = new Date();
+                    $('#async-int-time').html(new Date() - startTime);
+                }
+            );
+        }
+    );
+    
+    $('#run-int-batched').on(
+        'click',
+        function() {
+            var startTime = new Date();
+            // Initiate the iterator
+            var promise = asyncIteratorInterval(
+                myArr,
+                function(num, index){
+                    $('#async-batched-int-status').html(Math.round((index/myArr.length)*100) + '%');
+                    
+                    return num * Math.PI;
+                }, 
+                1000
+            );
+            
+            promise.done(
+                function(results){
+                    $('#async-batched-int-time').html(new Date() - startTime);
+                }
+            );
+        }
+    );
+    
 })();
